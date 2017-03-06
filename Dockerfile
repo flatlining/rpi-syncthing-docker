@@ -25,3 +25,15 @@ RUN apt-get -y install curl apt-transport-https && \
 # Remove unecessary files
 #RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Expose poers
+EXPOSE 8080 22000 21025/udp
+
+# Create folders
+RUN mkdir -p /syncthing/config && \
+    mkdir -p /syncthing/data
+VOLUME ["/syncthing/config", "/syncthing/data"]
+
+# Add command
+ADD init.sh /syncthing/init.sh
+RUN chmod 770 /syncthing/init
+CMD ["/syncthing/init"]
