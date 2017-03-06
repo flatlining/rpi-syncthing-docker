@@ -16,7 +16,11 @@ RUN apt-get -y install locales && \
     dpkg-reconfigure locales
 
 # Install apps
-RUN apt-get -y install nano
+RUN apt-get -y install curl apt-transport-https && \
+    curl -s https://syncthing.net/release-key.txt | sudo apt-key add - && \
+    echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list && \
+    apt-get update && \
+    apt-get -y install syncthing
 
 # Remove unecessary files
 #RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
