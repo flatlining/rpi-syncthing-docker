@@ -13,4 +13,6 @@ if [ ! -f /syncthing/config/config.xml ]; then
 	sed -e "s/<address>127.0.0.1:8384/<address>0.0.0.0:8080/" -i /syncthing/config/config.xml
 fi
 
+screen -S inotify -dm syncthing-inotify
+
 syncthing -home=/syncthing/config

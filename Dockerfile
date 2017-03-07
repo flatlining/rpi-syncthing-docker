@@ -22,6 +22,8 @@ RUN apt-get -y install curl apt-transport-https && \
     apt-get update && \
     apt-get -y install syncthing
 
+RUN apt-get -y install screen syncthing-inotify
+
 # Remove unecessary files
 #RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

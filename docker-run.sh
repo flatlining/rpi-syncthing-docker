@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo sh -c 'echo 204800 > /proc/sys/fs/inotify/max_user_watches'
+
 docker run -d --name syncthing \
            --restart=always \
            -v $HOME/docker-data/sync/config:/syncthing/config \
