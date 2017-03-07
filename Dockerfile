@@ -22,6 +22,8 @@ RUN apt-get -y install curl apt-transport-https && \
     apt-get update && \
     apt-get -y install syncthing
 
+RUN apt-get -y install screen syncthing-inotify
+
 # Remove unecessary files
 #RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -32,6 +34,9 @@ EXPOSE 8080 22000 21025/udp
 RUN mkdir -p /syncthing/config && \
     mkdir -p /syncthing/data
 VOLUME ["/syncthing/config", "/syncthing/data"]
+
+# inotify usage
+ENV USE_INOTIFY 0
 
 # Add command
 ADD init /syncthing/init
