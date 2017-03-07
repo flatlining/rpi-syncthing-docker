@@ -34,6 +34,6 @@ RUN mkdir -p /syncthing/config && \
 VOLUME ["/syncthing/config", "/syncthing/data"]
 
 # Add command
-ADD init.sh /syncthing/init.sh
+ADD init /syncthing/init
 RUN chmod 770 /syncthing/init
 CMD ["/syncthing/init"]
