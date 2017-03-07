@@ -10,9 +10,12 @@ if [ ! -f /syncthing/config/config.xml ]; then
   # don't take the whole volume with the default so that we can add additional folders
   sed -e "s/id=\"default\" label=\"Default Folder\" path=\"\/root\/Sync\/\"/id=\"default\" label=\"Default Folder\" path=\"\/syncthing\/data\/default\/\"/" -i /syncthing/config/config.xml
   # ensure we can see the web ui outside of the docker container
-	sed -e "s/<address>127.0.0.1:8384/<address>0.0.0.0:8080/" -i /syncthing/config/config.xml
+  sed -e "s/<address>127.0.0.1:8384/<address>0.0.0.0:8080/" -i /syncthing/config/config.xml
 fi
 
-screen -S inotify -dm syncthing-inotify
+if [ "$USE_INOTIFY" = 1 ]; then
+  echo "using inotify, limit: $(cat /proc/sys/fs/inotify/max_user_watches)"
+  screen -S inotify -dm syncthing-inotify
+fi
 
 syncthing -home=/syncthing/config

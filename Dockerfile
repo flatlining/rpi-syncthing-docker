@@ -35,6 +35,9 @@ RUN mkdir -p /syncthing/config && \
     mkdir -p /syncthing/data
 VOLUME ["/syncthing/config", "/syncthing/data"]
 
+# inotify usage
+ENV USE_INOTIFY 0
+
 # Add command
 ADD init /syncthing/init
 RUN chmod 770 /syncthing/init
