@@ -9,4 +9,5 @@ docker run -d --name syncthing \
            -p 22000:22000 \
            -p 21025:21025/udp \
            -p 8080:8080 \
+           -e USE_INOTIFY=1 \
            rpi-syncthing:arm
