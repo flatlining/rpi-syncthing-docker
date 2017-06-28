@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t rpi-syncthing:arm .
+docker build -t flatlining/syncthing:arm .
